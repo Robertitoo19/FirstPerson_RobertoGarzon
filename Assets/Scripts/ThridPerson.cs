@@ -8,10 +8,12 @@ public class ThridPerson : MonoBehaviour
     CharacterController controller;
     [SerializeField] private float smoothTime;
     private float speedRotate;
+    private Animator anim;
     void Start()
     {
         //coger componente de character controller
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
     void Update()
     {
@@ -41,6 +43,12 @@ public class ThridPerson : MonoBehaviour
 
             //movimiento controller
             controller.Move(movement * speedMov * Time.deltaTime);
+
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
     }
 }

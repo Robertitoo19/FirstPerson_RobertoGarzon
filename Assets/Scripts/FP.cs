@@ -7,6 +7,14 @@ public class FP : MonoBehaviour
 {
     [SerializeField] private float speedMov;
     CharacterController controller;
+
+    [SerializeField] private float gravityFactor;
+    private Vector3 verticalMovement;
+    [Header("----Detección suelo----")]
+    [SerializeField] private float detectionRatio;
+    //para acceder directo al transform
+    [SerializeField] private Transform feets;
+    [SerializeField] private LayerMask whatIsGround;
     void Start()
     {
         //coger componente de character controller
@@ -15,8 +23,10 @@ public class FP : MonoBehaviour
     void Update()
     {
         MovYRotate();
+        applyGravity();
+        isGrounded();
     }
-    void MovYRotate()
+    private void MovYRotate()
     {
         //coger datos de donde te mueves
         float movH = Input.GetAxisRaw("Horizontal");
@@ -38,5 +48,20 @@ public class FP : MonoBehaviour
             //movimiento controller
             controller.Move(movement * speedMov * Time.deltaTime);
         }
+    }
+    private void applyGravity()
+    {
+        //mi velocidad vertical crece en Y a cierta velocidad x segundo.
+        verticalMovement.y += gravityFactor * Time.deltaTime;
+        //movimiento en y, otra vez x delta xq la gravedad es al cuadrado.
+        controller.Move(verticalMovement * Time.deltaTime);
+        //(se acumula la gravedad y baja raro)
+    }
+    private bool isGrounded()
+    {
+        //hacer esfera de detencion en los pies para saber si estoy suelo.
+        //detectar posicion de los pies con transform.
+        bool result = Physics.CheckSphere(feets.position, detectionRatio, whatIsGround);
+        return result;
     }
 }

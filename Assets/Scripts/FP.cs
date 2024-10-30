@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class FP : MonoBehaviour
 {
+    [Header("-----Movimiento-----")]
     [SerializeField] private float speedMov;
     CharacterController controller;
-
     [SerializeField] private float gravityFactor;
     private Vector3 verticalMovement;
-    [Header("----Detección suelo----")]
+    [SerializeField] private float jumpHeight;
+
+    [Header("-----Detección suelo-----")]
     [SerializeField] private float detectionRatio;
     //para acceder directo al transform
     [SerializeField] private Transform feets;
@@ -19,12 +21,20 @@ public class FP : MonoBehaviour
     {
         //coger componente de character controller
         controller = GetComponent<CharacterController>();
+        //esconder mouse.
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
         MovYRotate();
         applyGravity();
-        isGrounded();
+
+        if (isGrounded())
+        {
+            //resetear gravedad
+            verticalMovement.y = 0;
+            Jump();
+        }
     }
     private void MovYRotate()
     {
@@ -37,8 +47,9 @@ public class FP : MonoBehaviour
 
         //sacar arcotangente del mov en x entre el mov en z, convertir radianes a grados y alinear angulo de la cam con el personaje.
         float rotateAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-        //orientar cuerpo hacia donde apunta la camara
-        transform.eulerAngles = new Vector3(0, rotateAngle, 0);
+
+        //cuerpo gire con la camara
+        transform.rotation = quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
         if (input.magnitude > 0)
         {
@@ -63,5 +74,19 @@ public class FP : MonoBehaviour
         //detectar posicion de los pies con transform.
         bool result = Physics.CheckSphere(feets.position, detectionRatio, whatIsGround);
         return result;
+    }
+    //metodo automatico para dibujar figuras.
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(feets.position, detectionRatio);
+    }
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //formula para saltar la altura que quiera.
+            verticalMovement.y = math.sqrt(-2 * gravityFactor * jumpHeight);
+        }
     }
 }

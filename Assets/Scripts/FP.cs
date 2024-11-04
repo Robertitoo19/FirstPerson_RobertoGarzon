@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class FP : MonoBehaviour
 {
+    [SerializeField] private float lives;
+
     [Header("-----Movimiento-----")]
     [SerializeField] private float speedMov;
     CharacterController controller;
@@ -88,5 +90,9 @@ public class FP : MonoBehaviour
             //formula para saltar la altura que quiera.
             verticalMovement.y = math.sqrt(-2 * gravityFactor * jumpHeight);
         }
+    }
+    public void ReceiveDamage(float enemyDamage)
+    {
+        lives -= enemyDamage;
     }
 }

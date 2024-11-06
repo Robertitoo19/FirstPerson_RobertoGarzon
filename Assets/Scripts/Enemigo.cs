@@ -35,7 +35,8 @@ public class Enemigo : MonoBehaviour
 
     private void DetectImpact()
     {
-        //detectar
+        //detectar colliders.
+
         Collider[] collDetectates = Physics.OverlapSphere(AttackPoint.position, detectionRatio, WhatIsDamagable);
         //si ha detectado algo en el ataque.
         if(collDetectates.Length > 0)

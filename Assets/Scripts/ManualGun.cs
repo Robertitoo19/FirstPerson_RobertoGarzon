@@ -19,7 +19,11 @@ public class ManualGun : MonoBehaviour
             system.Play();
             if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
             {
-                Debug.Log(hitInfo.transform.name); //quien ha impactado
+                if (hitInfo.transform.CompareTag("EnemyPart"))
+                {
+                    //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
+                    hitInfo.transform.GetComponent<Enemigo>().ReceiveDamageEnemy(myData.attackDamage);
+                }
             }
             
         }

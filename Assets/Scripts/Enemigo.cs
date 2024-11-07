@@ -18,11 +18,19 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private LayerMask WhatIsDamagable;
     [SerializeField] private float enemyDamage;
     private bool canDamage;
+
+    [SerializeField] private float livesEnemy;
+
+    Rigidbody[] joints;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindObjectOfType<FP>();
         anim = GetComponent<Animator>();
+
+        joints = GetComponentsInChildren<Rigidbody>();
+
+        ChangeJointsState(true);
     }
     void Update()
     {
@@ -77,5 +85,20 @@ public class Enemigo : MonoBehaviour
     private void CloseAttackWindow()
     {
         OpenWindow = false;
+    }
+    public void ReceiveDamageEnemy(float attackReceive)
+    {
+        livesEnemy -= attackReceive;
+        if (livesEnemy <= 0)
+        {
+            ChangeJointsState(false);
+        }
+    }
+    private void ChangeJointsState(bool State)
+    {
+        for (int i = 0; i < joints.Length; i++)
+        {
+            joints[i].isKinematic = State;
+        }
     }
 }

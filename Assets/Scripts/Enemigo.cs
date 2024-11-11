@@ -19,9 +19,12 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private float enemyDamage;
     private bool canDamage;
 
+    Rigidbody[] joints;
+
     [SerializeField] private float livesEnemy;
 
-    Rigidbody[] joints;
+    public float LivesEnemy { get => livesEnemy; set => livesEnemy = value; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -86,19 +89,18 @@ public class Enemigo : MonoBehaviour
     {
         OpenWindow = false;
     }
-    public void ReceiveDamageEnemy(float attackReceive)
-    {
-        livesEnemy -= attackReceive;
-        if (livesEnemy <= 0)
-        {
-            ChangeJointsState(false);
-        }
-    }
     private void ChangeJointsState(bool State)
     {
         for (int i = 0; i < joints.Length; i++)
         {
             joints[i].isKinematic = State;
         }
+    }
+    public void Dead()
+    {
+        ChangeJointsState(false);
+        anim.enabled = false;
+        agent.enabled = false;
+        Destroy(gameObject, 15);
     }
 }

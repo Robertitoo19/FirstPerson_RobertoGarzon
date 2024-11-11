@@ -19,6 +19,8 @@ public class FP : MonoBehaviour
     //para acceder directo al transform
     [SerializeField] private Transform feets;
     [SerializeField] private LayerMask whatIsGround;
+
+    [SerializeField] private float pushForce;
     void Start()
     {
         //coger componente de character controller
@@ -94,5 +96,14 @@ public class FP : MonoBehaviour
     public void ReceiveDamage(float enemyDamage)
     {
         lives -= enemyDamage;
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("EnemyPart"))
+        {
+            //restar posicion enemigo - posicion player
+            Vector3 Push = hit.gameObject.transform.position - transform.position;
+            hit.gameObject.GetComponent<Rigidbody>().AddForce(Push.normalized * pushForce, ForceMode.Impulse);
+        }
     }
 }

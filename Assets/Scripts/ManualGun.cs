@@ -22,7 +22,7 @@ public class ManualGun : MonoBehaviour
                 if (hitInfo.transform.CompareTag("EnemyPart"))
                 {
                     //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
-                    hitInfo.transform.GetComponent<Enemigo>().ReceiveDamageEnemy(myData.attackDamage);
+                    hitInfo.transform.GetComponent<EnemyPart>().ReceiveDamageEnemy(myData.attackDamage);
                 }
             }
             

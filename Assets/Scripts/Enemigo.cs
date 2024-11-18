@@ -37,7 +37,10 @@ public class Enemigo : MonoBehaviour
     }
     void Update()
     {
-        Follow();
+        if(agent.enabled)
+        {
+            Follow();
+        }
         if (OpenWindow && canDamage)
         {
             DetectImpact();
@@ -66,7 +69,7 @@ public class Enemigo : MonoBehaviour
         //ir a la posicion del player.
         agent.SetDestination(player.transform.position);
         //el enemigo esta cerca del player.
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             //se para el enemigo.
             agent.isStopped = true;

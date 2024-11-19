@@ -6294,7 +6294,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 67f5c7e9e4ae7ef4ea7dc0fc1d554108, type: 2}
   m_BuildHeightMesh: 0
@@ -6408,7 +6408,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  pushForce: 100
+  pushForce: 30
 --- !u!54 &1702622769
 Rigidbody:
   m_ObjectHideFlags: 0

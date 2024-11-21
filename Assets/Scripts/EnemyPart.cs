@@ -14,4 +14,8 @@ public class EnemyPart : MonoBehaviour
             mainScript.Dead();
         }
     }
+    public void Explode()
+    {
+
+    }
 }

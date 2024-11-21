@@ -78,7 +78,7 @@ public class Enemigo : MonoBehaviour
         }
     }
 
-    private void FinAtack()
+    private void EndAttack()
     {
         agent.isStopped = false;
         anim.SetBool("isAttacking", false);

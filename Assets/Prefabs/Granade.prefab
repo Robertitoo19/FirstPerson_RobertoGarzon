@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06812f4b24e06e4ca0ba08c7ecb4989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseForce: 30
+  impulseForce: 20
   prefabExplosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
     type: 3}
 --- !u!54 &9031460328480479714

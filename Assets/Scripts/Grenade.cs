@@ -12,7 +12,7 @@ public class Grenade : MonoBehaviour
         rb = GetComponent<Rigidbody>();
                     //donde apunta z.
         rb.AddForce(transform.forward * impulseForce, ForceMode.Impulse);
-        Destroy(gameObject, 2.5f);
+        Destroy(gameObject, 1.5f);
     }
     void Update()
     {

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemyPrefabs;
+    [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int levels;
     [SerializeField] private int roundsxLevel;
@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
             {
                 for (int k = 0; k < spawnxRound; k++)
                 {
-                    Instantiate(enemyPrefabs, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+                    Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
 
                     yield return new WaitForSeconds(waitSpawns);
                 }

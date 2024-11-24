@@ -36,6 +36,13 @@ public class InteractSystem : MonoBehaviour
                     scritpAmmoBox.OpneBox();
                 }
             }
+            if (hit.transform.TryGetComponent(out M4 scriptM4Wall))
+            {
+                //si lo lleva es un interactuable  
+                actualInteract = scriptM4Wall.transform;
+                //activar outline
+                actualInteract.GetComponent<Outline>().enabled = true;
+            }
         }
         //si no ves nada
         else if (actualInteract != null)

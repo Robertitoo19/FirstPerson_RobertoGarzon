@@ -6066,7 +6066,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -17256,10 +17256,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1888779846}
   - component: {fileID: 1889549932}
+  - component: {fileID: 1890679853}
+  - component: {fileID: 1890679855}
   - component: {fileID: 1890679852}
   - component: {fileID: 1890679856}
-  - component: {fileID: 1890679855}
-  - component: {fileID: 1890679853}
   m_Layer: 0
   m_Name: M4
   m_TagString: Untagged
@@ -21986,8 +21986,8 @@ MonoBehaviour:
     - {x: 0.70710677, y: -0.17866513, z: -0.6841628}
     - {x: 0.58217967, y: -0.71262115, z: -0.3914563}
     - {x: 0.5741578, y: -0.70926726, z: -0.40900224}
---- !u!64 &1890679856
-MeshCollider:
+--- !u!65 &1890679856
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -22004,10 +22004,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 120f6c23f4f98984e97997d269880d04, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.09039449, y: 0.3473133, z: 1.2887373}
+  m_Center: {x: 0.000002795831, y: -0.006095007, z: 0.27871513}
 --- !u!1 &1892170308
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class GunSO : ScriptableObject
 {
     //DATOS
-    public int bullets;
+    public int MaxAmmo;
     public int chamberBullets;
     public float cadence;
     public float attackDistance;

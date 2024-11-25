@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82748c49a26bbdd4387823fa85bf0220, type: 3}
   m_Name: GunData
   m_EditorClassIdentifier: 
-  bullets: 7
+  MaxAmmo: 7
   chamberBullets: 40
   cadence: 1.25
   attackDistance: 300

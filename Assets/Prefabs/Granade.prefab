@@ -132,8 +132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulseForce: 20
+  explosionRatio: 5
+  explosionForce: 60
   prefabExplosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
     type: 3}
+  whatisExplotable:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!54 &9031460328480479714
 Rigidbody:
   m_ObjectHideFlags: 0

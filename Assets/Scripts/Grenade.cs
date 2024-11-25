@@ -7,8 +7,9 @@ public class Grenade : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private float impulseForce;
-    [SerializeField] private GameObject prefabExplosion;
     [SerializeField] private float explosionRatio;
+    [SerializeField] private float explosionForce;
+    [SerializeField] private GameObject prefabExplosion;
     [SerializeField] private LayerMask whatisExplotable;
 
     void Start()
@@ -40,7 +41,7 @@ public class Grenade : MonoBehaviour
             {
                 if(collsDetected[i].TryGetComponent(out EnemyPart scriptJoints))
                 {
-                    scriptJoints.Explode();
+                    scriptJoints.Explode(explosionForce, transform.position, explosionRatio, 3.5f);
                 }
             }
         }

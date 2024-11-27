@@ -14,12 +14,20 @@ public class ManualGun : MonoBehaviour
     private int currentAmmo;
     private float reloadTime = 1.5f;
     private bool isReloading = false;
+    private Animator anim;
 
     void Start()
     {
         cam = Camera.main;
+        anim = GetComponent<Animator>();
 
         currentAmmo = myData.MaxAmmo;
+    }
+    //Como un update
+    //Cuando no haya terminado de cargar y se cambie de arma, al volver siga recargando.
+    private void OnEnable()
+    {
+        isReloading = false;
     }
     void Update()
     {
@@ -27,7 +35,7 @@ public class ManualGun : MonoBehaviour
         {
             return; 
         }
-        if (currentAmmo <= 0)
+        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo > 0) || currentAmmo <= 0 )
         {
             StartCoroutine(Reload());
             return;
@@ -55,8 +63,9 @@ public class ManualGun : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-
         Debug.Log("Reloading...");
+
+        anim.SetTrigger("Reload");
 
         yield return new WaitForSeconds(reloadTime);
 

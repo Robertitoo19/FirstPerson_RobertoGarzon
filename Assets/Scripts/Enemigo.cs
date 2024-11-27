@@ -75,7 +75,20 @@ public class Enemigo : MonoBehaviour
             agent.isStopped = true;
             //activar anim.
             anim.SetBool("isAttacking", true);
+            AimObjetive();
         }
+    }
+
+    private void AimObjetive()
+    {
+        //sacar vector que mira al player desde nuestra posicion.
+        Vector3 objetiveDirection = (player.transform.position - transform.position).normalized;
+        //enemigo no se tumbe.
+        objetiveDirection.y = 0;
+        //calcular rotacion para conseguir rotacion.
+        Quaternion objetiveRotation = Quaternion.LookRotation(objetiveDirection);
+
+        transform.rotation = objetiveRotation;
     }
 
     private void EndAttack()

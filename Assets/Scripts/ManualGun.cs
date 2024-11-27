@@ -53,10 +53,10 @@ public class ManualGun : MonoBehaviour
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
         {
-            if (hitInfo.transform.CompareTag("EnemyPart"))
+            if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
             {
                 //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
-                hitInfo.transform.GetComponent<EnemyPart>().ReceiveDamageEnemy(myData.attackDamage);
+                enemyPartScript.ReceiveDamageEnemy(myData.attackDamage);
             }
         }
     }

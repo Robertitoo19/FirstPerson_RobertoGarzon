@@ -40,23 +40,24 @@ public class ManualGun : MonoBehaviour
             StartCoroutine(Reload());
             return;
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
+
+        Shoot();
     }
 
     private void Shoot()
     {
-        system.Play();
-        currentAmmo--;
-
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
+        if (Input.GetMouseButtonDown(0))
         {
-            if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
+            system.Play();
+            currentAmmo--;
+
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
             {
-                //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
-                enemyPartScript.ReceiveDamageEnemy(myData.attackDamage);
+                if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
+                {
+                    //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
+                    enemyPartScript.ReceiveDamageEnemy(myData.attackDamage);
+                }
             }
         }
     }

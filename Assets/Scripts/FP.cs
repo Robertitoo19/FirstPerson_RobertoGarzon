@@ -21,6 +21,8 @@ public class FP : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
 
     [SerializeField] private float pushForce;
+
+    [SerializeField] private float points = 0;
     void Start()
     {
         //coger componente de character controller
@@ -96,6 +98,10 @@ public class FP : MonoBehaviour
     public void ReceiveDamage(float enemyDamage)
     {
         lives -= enemyDamage;
+    }
+    public void ReceivePoints(float enemyPoints)
+    {
+        points += enemyPoints;
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

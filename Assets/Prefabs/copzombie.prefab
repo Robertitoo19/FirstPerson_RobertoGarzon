@@ -3865,6 +3865,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemyDamage: 30
+  enemyPoints: 200
   livesEnemy: 150
 --- !u!95 &6993296499582616175
 Animator:

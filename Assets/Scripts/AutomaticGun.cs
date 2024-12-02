@@ -37,7 +37,7 @@ public class AutomaticGun : MonoBehaviour
         {
             return;
         }
-        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo > 0) || currentAmmo <= 0)
+        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo < myData.MaxAmmo))
         {
             StartCoroutine(Reload());
             return;
@@ -48,7 +48,7 @@ public class AutomaticGun : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && timer >= myData.cadence)
+        if (Input.GetMouseButton(0) && timer >= myData.cadence && currentAmmo > 0)
         {
             system.Play();
             currentAmmo--;

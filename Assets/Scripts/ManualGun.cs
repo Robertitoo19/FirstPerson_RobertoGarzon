@@ -12,6 +12,8 @@ public class ManualGun : MonoBehaviour
     [Header("-----Reload-----")]
 
     private int currentAmmo;
+    private int currentChamber;
+
     private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Animator anim;
@@ -22,6 +24,7 @@ public class ManualGun : MonoBehaviour
         anim = GetComponent<Animator>();
 
         currentAmmo = myData.MaxAmmo;
+        currentChamber = myData.chamberBullets;
     }
     //Como un update
     //Cuando no haya terminado de cargar y se cambie de arma, al volver siga recargando.
@@ -35,7 +38,7 @@ public class ManualGun : MonoBehaviour
         {
             return; 
         }
-        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo > 0) || currentAmmo <= 0 )
+        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo < myData.MaxAmmo))
         {
             StartCoroutine(Reload());
             return;
@@ -46,7 +49,7 @@ public class ManualGun : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && currentAmmo > 0)
         {
             system.Play();
             currentAmmo--;
@@ -63,6 +66,17 @@ public class ManualGun : MonoBehaviour
     }
     IEnumerator Reload()
     {
+        int huecos = myData.MaxAmmo - currentAmmo;
+        currentChamber -= huecos;
+        //if() //Tengo muchas balas en chamber como para cubrir los huecos
+        //{
+
+        //}
+        //else //No tengo suficientes balas en chamber para cubrir todos los huecs....
+        //{
+
+        //}
+
         isReloading = true;
         Debug.Log("Reloading...");
 

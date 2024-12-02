@@ -49,7 +49,8 @@ public class Enemigo : MonoBehaviour
         }
         if (isDead)
         {
-            GetComponent<FP>().ReceivePoints(enemyPoints);
+            player.GetComponent<FP>().ReceivePoints(enemyPoints);
+            isDead = false;
         }
     }
 

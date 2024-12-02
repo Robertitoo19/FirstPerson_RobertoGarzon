@@ -168,7 +168,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4689083990643298}
   - component: {fileID: 205709636835153214}
-  - component: {fileID: 136614995598757014}
+  - component: {fileID: -5702569525593357764}
+  - component: {fileID: -6046815344329466234}
   m_Layer: 0
   m_Name: PF Conifer Small BOTD URP
   m_TagString: Untagged
@@ -221,7 +222,26 @@ LODGroup:
     renderers:
     - renderer: {fileID: 227092337440914680}
   m_Enabled: 1
---- !u!136 &136614995598757014
+--- !u!114 &-5702569525593357764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364922359172550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
+--- !u!136 &-6046815344329466234
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,10 +260,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
-  m_Height: 2
+  m_Radius: 0.21948726
+  m_Height: 3.097285
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 1.0486425, z: -0.098179415}
 --- !u!1 &1500231203828324
 GameObject:
   m_ObjectHideFlags: 0

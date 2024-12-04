@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ManualGun : MonoBehaviour
@@ -12,11 +13,13 @@ public class ManualGun : MonoBehaviour
     [Header("-----Reload-----")]
 
     private int currentAmmo;
-    private int currentChamber;
+    //private int currentChamber;
 
     private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Animator anim;
+
+    [SerializeField] private TMP_Text txtCurrentAmmo;
 
     void Start()
     {
@@ -24,7 +27,9 @@ public class ManualGun : MonoBehaviour
         anim = GetComponent<Animator>();
 
         currentAmmo = myData.MaxAmmo;
-        currentChamber = myData.chamberBullets;
+        //currentChamber = myData.chamberBullets;
+
+        txtCurrentAmmo.text = ("" + currentAmmo);
     }
     //Como un update
     //Cuando no haya terminado de cargar y se cambie de arma, al volver siga recargando.
@@ -53,6 +58,7 @@ public class ManualGun : MonoBehaviour
         {
             system.Play();
             currentAmmo--;
+            txtCurrentAmmo.text = ("" + currentAmmo);
 
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
             {
@@ -66,8 +72,8 @@ public class ManualGun : MonoBehaviour
     }
     IEnumerator Reload()
     {
-        int huecos = myData.MaxAmmo - currentAmmo;
-        currentChamber -= huecos;
+        //int huecos = myData.MaxAmmo - currentAmmo;
+        //currentChamber -= huecos;
         //if() //Tengo muchas balas en chamber como para cubrir los huecos
         //{
 
@@ -78,13 +84,14 @@ public class ManualGun : MonoBehaviour
         //}
 
         isReloading = true;
-        Debug.Log("Reloading...");
 
         anim.SetTrigger("Reload");
 
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = myData.MaxAmmo;
+
+        txtCurrentAmmo.text = ("" + currentAmmo);
 
         isReloading = false;
     }

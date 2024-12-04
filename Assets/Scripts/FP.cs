@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -22,13 +23,18 @@ public class FP : MonoBehaviour
 
     [SerializeField] private float pushForce;
 
+    [Header("-----Puntos-----")]
+
     [SerializeField] private float points = 0;
+    [SerializeField] private TMP_Text txtPoints;
     void Start()
     {
         //coger componente de character controller
         controller = GetComponent<CharacterController>();
         //esconder mouse.
         Cursor.lockState = CursorLockMode.Locked;
+
+        txtPoints.text = ("" + points);
     }
     void Update()
     {
@@ -102,6 +108,7 @@ public class FP : MonoBehaviour
     public void ReceivePoints(float enemyPoints)
     {
         points += enemyPoints;
+        txtPoints.text = ("" + points);
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

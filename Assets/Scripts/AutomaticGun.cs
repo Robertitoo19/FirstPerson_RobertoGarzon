@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 
@@ -18,6 +19,8 @@ public class AutomaticGun : MonoBehaviour
     private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Animator anim;
+
+    [SerializeField] private TMP_Text txtCurrentAmmo;
     void Start()
     {
         cam = Camera.main;
@@ -26,6 +29,8 @@ public class AutomaticGun : MonoBehaviour
         currentAmmo = myData.MaxAmmo;
 
         timer = myData.cadence;
+
+        txtCurrentAmmo.text = ("" + currentAmmo);
     }
     private void OnEnable()
     {
@@ -52,6 +57,8 @@ public class AutomaticGun : MonoBehaviour
         {
             system.Play();
             currentAmmo--;
+            txtCurrentAmmo.text = ("" + currentAmmo);
+
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, myData.attackDistance))
             {
                 if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
@@ -66,13 +73,14 @@ public class AutomaticGun : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        Debug.Log("Reloading...");
 
         anim.SetTrigger("Reload");
 
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = myData.MaxAmmo;
+
+        txtCurrentAmmo.text = ("" + currentAmmo);
 
         isReloading = false;
     }

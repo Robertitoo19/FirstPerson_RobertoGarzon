@@ -13,13 +13,14 @@ public class ManualGun : MonoBehaviour
     [Header("-----Reload-----")]
 
     private int currentAmmo;
-    //private int currentChamber;
+    private int currentChamber;
 
     private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Animator anim;
 
     [SerializeField] private TMP_Text txtCurrentAmmo;
+    [SerializeField] private TMP_Text txtCurrentChamber;
 
     void Start()
     {
@@ -27,9 +28,10 @@ public class ManualGun : MonoBehaviour
         anim = GetComponent<Animator>();
 
         currentAmmo = myData.MaxAmmo;
-        //currentChamber = myData.chamberBullets;
+        currentChamber = myData.chamberBullets;
 
         txtCurrentAmmo.text = ("" + currentAmmo);
+        txtCurrentChamber.text = ("" + currentChamber);
     }
     //Como un update
     //Cuando no haya terminado de cargar y se cambie de arma, al volver siga recargando.
@@ -72,27 +74,29 @@ public class ManualGun : MonoBehaviour
     }
     IEnumerator Reload()
     {
-        //int huecos = myData.MaxAmmo - currentAmmo;
-        //currentChamber -= huecos;
-        //if() //Tengo muchas balas en chamber como para cubrir los huecos
-        //{
+        int emptys = myData.MaxAmmo - currentAmmo;
+        currentChamber -= emptys;
 
-        //}
-        //else //No tengo suficientes balas en chamber para cubrir todos los huecs....
-        //{
+        if (currentChamber > 0) //Tengo muchas balas en chamber como para cubrir los huecos
+        {
 
-        //}
+            isReloading = true;
 
-        isReloading = true;
+            anim.SetTrigger("Reload");
 
-        anim.SetTrigger("Reload");
+            yield return new WaitForSeconds(reloadTime);
 
-        yield return new WaitForSeconds(reloadTime);
+            currentAmmo = myData.MaxAmmo;
 
-        currentAmmo = myData.MaxAmmo;
+            txtCurrentAmmo.text = ("" + currentAmmo);
+            txtCurrentChamber.text = ("" + currentChamber);
 
-        txtCurrentAmmo.text = ("" + currentAmmo);
+            isReloading = false;
+        }
+        else //No tengo suficientes balas en chamber para cubrir todos los huecos
+        {
+            Debug.Log("no tienes");
+        }
 
-        isReloading = false;
     }
 }

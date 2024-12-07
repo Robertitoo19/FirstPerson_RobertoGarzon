@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float waitLevels;
     [SerializeField] private float waitRounds;
     [SerializeField] private float waitSpawns;
+
+    [SerializeField] private TMP_Text txtRounds;
     void Start()
     {
         StartCoroutine(SpawnSystem());
@@ -33,7 +36,7 @@ public class Spawner : MonoBehaviour
 
                     yield return new WaitForSeconds(waitSpawns);
                 }
-                //actualizar texto ronda
+                txtRounds.text = "Round " + j;
                 yield return new WaitForSeconds(waitRounds);
             }
             //actualizar texto nivel

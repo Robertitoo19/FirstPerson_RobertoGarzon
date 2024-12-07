@@ -43,6 +43,13 @@ public class InteractSystem : MonoBehaviour
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
             }
+            if (hit.transform.TryGetComponent(out FirstAid scriptAid))
+            {
+                //si lo lleva es un interactuable  
+                actualInteract = scriptAid.transform;
+                //activar outline
+                actualInteract.GetComponent<Outline>().enabled = true;
+            }
         }
         //si no ves nada
         else if (actualInteract != null)

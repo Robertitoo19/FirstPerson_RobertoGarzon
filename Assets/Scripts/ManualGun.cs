@@ -71,6 +71,7 @@ public class ManualGun : MonoBehaviour
                 if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
                 {
                     //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
+                    audioManager.ReproducirSFX(sonidos[2]);
                     enemyPartScript.ReceiveDamageEnemy(myData.attackDamage);
                 }
             }

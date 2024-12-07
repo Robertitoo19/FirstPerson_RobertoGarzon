@@ -139,6 +139,9 @@ MonoBehaviour:
   whatisExplotable:
     serializedVersion: 2
     m_Bits: 128
+  audioManager: {fileID: 0}
+  sonidos:
+  - {fileID: 8300000, guid: 48563016dd528f745aa87503af3cc84a, type: 3}
 --- !u!54 &9031460328480479714
 Rigidbody:
   m_ObjectHideFlags: 0

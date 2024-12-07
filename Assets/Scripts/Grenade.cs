@@ -12,6 +12,10 @@ public class Grenade : MonoBehaviour
     [SerializeField] private GameObject prefabExplosion;
     [SerializeField] private LayerMask whatisExplotable;
 
+    [Header("-----Audio-----")]
+    [SerializeField] AudioManager audioManager;
+    public AudioClip[] sonidos;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,11 +31,13 @@ public class Grenade : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
+        audioManager.ReproducirSFX(sonidos[0]);
     }
     //se ejecuta cuando se muere.
     private void OnDestroy()
     {
         Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+        audioManager.ReproducirSFX(sonidos[0]);
 
         Collider[] collsDetected = Physics.OverlapSphere(transform.position, explosionRatio, whatisExplotable);
 

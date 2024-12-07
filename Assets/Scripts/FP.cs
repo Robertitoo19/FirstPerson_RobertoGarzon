@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FP : MonoBehaviour
 {
@@ -104,6 +105,11 @@ public class FP : MonoBehaviour
     public void ReceiveDamage(float enemyDamage)
     {
         lives -= enemyDamage;
+
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
     public void ReceivePoints(float enemyPoints)
     {

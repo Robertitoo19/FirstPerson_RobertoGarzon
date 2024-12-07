@@ -21,6 +21,10 @@ public class RocketLauncher : MonoBehaviour
 
     [SerializeField] private TMP_Text txtCurrentAmmo;
     [SerializeField] private TMP_Text txtCurrentChamber;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioManager audioManager;
+    public AudioClip[] sonidos;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -54,6 +58,7 @@ public class RocketLauncher : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && currentAmmo > 0)
         {
+            audioManager.ReproducirSFX(sonidos[0]);
             currentAmmo--;
             txtCurrentAmmo.text = ("" + currentAmmo);
             //instanciar copia del prefab granada en la boca del bazoka. misma rotacion q el bazooka.
@@ -69,6 +74,8 @@ public class RocketLauncher : MonoBehaviour
         if (currentChamber > 0)
         {
             isReloading = true;
+
+            audioManager.ReproducirSFX(sonidos[1]);
 
             anim.SetTrigger("Reload");
 

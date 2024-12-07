@@ -24,6 +24,10 @@ public class AutomaticGun : MonoBehaviour
 
     [SerializeField] private TMP_Text txtCurrentAmmo;
     [SerializeField] private TMP_Text txtCurrentChamber;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioManager audioManager;
+    public AudioClip[] sonidos;
     void Start()
     {
         cam = Camera.main;
@@ -61,6 +65,7 @@ public class AutomaticGun : MonoBehaviour
         if (Input.GetMouseButton(0) && timer >= myData.cadence && currentAmmo > 0)
         {
             system.Play();
+            audioManager.ReproducirSFX(sonidos[0]);
             currentAmmo--;
             txtCurrentAmmo.text = ("" + currentAmmo);
 
@@ -69,6 +74,7 @@ public class AutomaticGun : MonoBehaviour
                 if (hitInfo.transform.TryGetComponent(out EnemyPart enemyPartScript))
                 {
                     //quien ha impactado, entrar a su script, hacerle el daño del scriptable.
+                    audioManager.ReproducirSFX(sonidos[2]);
                     enemyPartScript.ReceiveDamageEnemy(myData.attackDamage);
                 }
             }
@@ -83,6 +89,8 @@ public class AutomaticGun : MonoBehaviour
         if (currentChamber > 0)
         {
             isReloading = true;
+
+            audioManager.ReproducirSFX(sonidos[1]);
 
             anim.SetTrigger("Reload");
 

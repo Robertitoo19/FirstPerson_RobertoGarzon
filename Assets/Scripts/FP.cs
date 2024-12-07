@@ -24,9 +24,9 @@ public class FP : MonoBehaviour
     [SerializeField] private float pushForce;
 
     [Header("-----Puntos-----")]
-
     [SerializeField] private float points = 0;
     [SerializeField] private TMP_Text txtPoints;
+
     void Start()
     {
         //coger componente de character controller

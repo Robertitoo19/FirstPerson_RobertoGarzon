@@ -16,4 +16,4 @@ MonoBehaviour:
   chamberBullets: 1
   cadence: 0
   attackDistance: 2
-  attackDamage: 10
+  attackDamage: 15

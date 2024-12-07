@@ -13,18 +13,23 @@ public class RocketLauncher : MonoBehaviour
     [Header("-----Reload-----")]
 
     private int currentAmmo;
+    private int currentChamber;
+
     private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Animator anim;
 
     [SerializeField] private TMP_Text txtCurrentAmmo;
+    [SerializeField] private TMP_Text txtCurrentChamber;
     void Start()
     {
         anim = GetComponent<Animator>();
 
         currentAmmo = myData.MaxAmmo;
+        currentChamber = myData.chamberBullets;
 
         txtCurrentAmmo.text = ("" + currentAmmo);
+        txtCurrentChamber.text = ("" + currentChamber);
     }
     private void OnEnable()
     {
@@ -58,16 +63,27 @@ public class RocketLauncher : MonoBehaviour
 
     IEnumerator Reload()
     {
-        isReloading = true;
+        int emptys = myData.MaxAmmo - currentAmmo;
+        currentChamber -= emptys;
 
-        anim.SetTrigger("Reload");
+        if (currentChamber > 0)
+        {
+            isReloading = true;
 
-        yield return new WaitForSeconds(reloadTime);
+            anim.SetTrigger("Reload");
 
-        currentAmmo = myData.MaxAmmo;
+            yield return new WaitForSeconds(reloadTime);
 
-        txtCurrentAmmo.text = ("" + currentAmmo);
+            currentAmmo = myData.MaxAmmo;
 
-        isReloading = false;
+            txtCurrentAmmo.text = ("" + currentAmmo);
+            txtCurrentChamber.text = ("" + currentChamber);
+
+            isReloading = false;
+        }
+        else 
+        {
+            Debug.Log("no tienes");
+        }
     }
 }

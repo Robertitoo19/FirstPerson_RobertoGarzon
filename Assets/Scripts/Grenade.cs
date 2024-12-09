@@ -37,7 +37,6 @@ public class Grenade : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(prefabExplosion, transform.position, Quaternion.identity);
-        audioManager.ReproducirSFX(sonidos[0]);
 
         Collider[] collsDetected = Physics.OverlapSphere(transform.position, explosionRatio, whatisExplotable);
 

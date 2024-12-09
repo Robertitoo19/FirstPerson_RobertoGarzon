@@ -10,7 +10,7 @@ public class CajaMunicion : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    public void OpneBox()
+    public void OpenBox()
     {
         anim.SetTrigger("Open");
     }

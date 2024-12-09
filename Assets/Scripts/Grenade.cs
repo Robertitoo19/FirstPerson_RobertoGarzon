@@ -13,7 +13,6 @@ public class Grenade : MonoBehaviour
     [SerializeField] private LayerMask whatisExplotable;
 
     [Header("-----Audio-----")]
-    [SerializeField] AudioManager audioManager;
     public AudioClip[] sonidos;
 
     void Start()
@@ -31,7 +30,7 @@ public class Grenade : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        audioManager.ReproducirSFX(sonidos[0]);
+        AudioManager.audioManager.ReproducirSFX(sonidos[0]);
     }
     //se ejecuta cuando se muere.
     private void OnDestroy()

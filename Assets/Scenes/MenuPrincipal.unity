@@ -1965,9 +1965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FOREST  NIGHTMARE
-
-'
+  m_text: FOREST  NIGHTMARE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3083ade7a2b944547b671452284d0f12, type: 2}
   m_sharedMaterial: {fileID: -6756263950008845707, guid: 3083ade7a2b944547b671452284d0f12,

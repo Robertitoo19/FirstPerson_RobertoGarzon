@@ -11,8 +11,8 @@ public class Enemigo : MonoBehaviour
     private FP player;
     private Animator anim;
 
-    [Header("-----SistemaCombate-----")]
     private bool OpenWindow;
+    [Header("-----SistemaCombate-----")]
     [SerializeField] private Transform AttackPoint;
     [SerializeField] private float detectionRatio;
     [SerializeField] private LayerMask WhatIsDamagable;
@@ -46,11 +46,6 @@ public class Enemigo : MonoBehaviour
         if (OpenWindow && canDamage)
         {
             DetectImpact();
-        }
-        if (isDead)
-        {
-            player.GetComponent<FP>().ReceivePoints(enemyPoints);
-            isDead = false;
         }
     }
 
@@ -121,10 +116,15 @@ public class Enemigo : MonoBehaviour
     }
     public void Dead()
     {
-        ChangeJointsState(false);
-        anim.enabled = false;
-        agent.enabled = false;
-        isDead = true;
-        Destroy(gameObject, 15);
+        if(!isDead) //Si aún no estoy muerto...
+        {
+            ChangeJointsState(false);
+            anim.enabled = false;
+            agent.enabled = false;
+            player.GetComponent<FP>().ReceivePoints(enemyPoints);
+            Destroy(gameObject, 15);
+            isDead = true;
+
+        }
     }
 }

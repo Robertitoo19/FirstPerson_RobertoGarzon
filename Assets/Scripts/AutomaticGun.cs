@@ -28,6 +28,9 @@ public class AutomaticGun : MonoBehaviour
     [Header("-----Audio-----")]
     [SerializeField] AudioManager audioManager;
     public AudioClip[] sonidos;
+
+    public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
+
     void Start()
     {
         cam = Camera.main;

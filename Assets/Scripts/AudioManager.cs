@@ -9,6 +9,23 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource sfxSource;
 
     public AudioClip ambient;
+
+    public static  AudioManager audioManager;
+
+    private void Awake()
+    {
+        if(audioManager == null)
+        {
+            audioManager = this;
+            //
+        }
+        else
+        {
+            Destroy(audioManager.gameObject);
+        }
+
+    }
+
     void Start()
     {
         

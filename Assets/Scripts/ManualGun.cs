@@ -25,6 +25,9 @@ public class ManualGun : MonoBehaviour
     [Header("-----Audio-----")]
     [SerializeField] AudioManager audioManager;
     public AudioClip[] sonidos;
+
+    public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
+
     void Start()
     {
         cam = Camera.main;
@@ -99,9 +102,12 @@ public class ManualGun : MonoBehaviour
 
             isReloading = false;
         }
-        else //No tengo suficientes balas en chamber para cubrir todos los huecos
+        else if (currentChamber == 0) //No tengo suficientes balas en chamber para cubrir todos los huecos
         {
-            Debug.Log("no tienes");
+            currentAmmo = currentAmmo + currentChamber;
+            currentChamber = 0;
+            txtCurrentAmmo.text = ("" + currentAmmo);
+            txtCurrentChamber.text = ("" + currentChamber);
         }
     }
 }

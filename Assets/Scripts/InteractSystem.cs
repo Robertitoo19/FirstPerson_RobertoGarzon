@@ -10,10 +10,10 @@ public class InteractSystem : MonoBehaviour
     [SerializeField] private AutomaticGun automaticGun;
     [SerializeField] private ManualGun manualGun;
     [SerializeField] private RocketLauncher rocket;
+    [SerializeField] private FP player;
+
     [SerializeField] private float interactDistance;
     private Transform actualInteract;
-
-    [SerializeField] private GunSO myData;
     void Start()
     {
         cam = Camera.main;
@@ -45,37 +45,42 @@ public class InteractSystem : MonoBehaviour
                     }
                     else if (manualGun.enabled)
                     {
+                        Debug.Log("suma muni");
                         manualGun.CurrentAmmo++;
                     }
                     else if (automaticGun.enabled)
                     {
                         automaticGun.CurrentAmmo++;
                     }
-
-                }
-                if (hit.transform.TryGetComponent(out M4 scriptM4Wall))
-                {
-                    //si lo lleva es un interactuable  
-                    actualInteract = scriptM4Wall.transform;
-                    //activar outline
-                    actualInteract.GetComponent<Outline>().enabled = true;
-                }
-                if (hit.transform.TryGetComponent(out FirstAid scriptAid))
-                {
-                    //si lo lleva es un interactuable  
-                    actualInteract = scriptAid.transform;
-                    //activar outline
-                    actualInteract.GetComponent<Outline>().enabled = true;
                 }
             }
-            //si no ves nada
-            else if (actualInteract != null)
+            if (hit.transform.TryGetComponent(out M4 scriptM4Wall))
             {
-                //quitar outline
-                actualInteract.GetComponent<Outline>().enabled = false;
-                //ya no ves interactuable
-                actualInteract = null;
+                //si lo lleva es un interactuable  
+                actualInteract = scriptM4Wall.transform;
+                //activar outline
+                actualInteract.GetComponent<Outline>().enabled = true;
             }
+            if (hit.transform.TryGetComponent(out FirstAid scriptAid))
+            {
+                //si lo lleva es un interactuable  
+                actualInteract = scriptAid.transform;
+                //activar outline
+                actualInteract.GetComponent<Outline>().enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.E) && player.Lives < 100) 
+                {
+                    player.Lives += 25;
+                }
+            }
+        }
+        //si no ves nada
+        else if (actualInteract != null)
+        {
+            //quitar outline
+            actualInteract.GetComponent<Outline>().enabled = false;
+            //ya no ves interactuable
+            actualInteract = null;
         }
     }
 }

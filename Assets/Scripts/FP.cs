@@ -28,6 +28,8 @@ public class FP : MonoBehaviour
     [SerializeField] private float points = 0;
     [SerializeField] private TMP_Text txtPoints;
 
+    public float Lives { get => lives; set => lives = value; }
+
     void Start()
     {
         //coger componente de character controller

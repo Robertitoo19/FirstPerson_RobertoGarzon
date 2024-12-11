@@ -91,9 +91,12 @@ public class RocketLauncher : MonoBehaviour
 
             isReloading = false;
         }
-        else 
+        else if (currentChamber == 0)
         {
-            Debug.Log("no tienes");
+            currentAmmo = currentAmmo + currentChamber;
+            currentChamber = 0;
+            txtCurrentAmmo.text = ("" + currentAmmo);
+            txtCurrentChamber.text = ("" + currentChamber);
         }
     }
 }

@@ -25,10 +25,11 @@ public class FP : MonoBehaviour
     [SerializeField] private float pushForce;
 
     [Header("-----Puntos-----")]
-    [SerializeField] private float points = 0;
+    [SerializeField] private float points;
     [SerializeField] private TMP_Text txtPoints;
 
     public float Lives { get => lives; set => lives = value; }
+    public float Points { get => points; set => points = value; }
 
     void Start()
     {

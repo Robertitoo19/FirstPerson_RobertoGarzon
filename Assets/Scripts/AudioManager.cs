@@ -17,11 +17,11 @@ public class AudioManager : MonoBehaviour
         if(audioManager == null)
         {
             audioManager = this;
-            //
+            DontDestroyOnLoad(audioManager);
         }
         else
         {
-            Destroy(audioManager.gameObject);
+            Destroy(audioManager);
         }
 
     }

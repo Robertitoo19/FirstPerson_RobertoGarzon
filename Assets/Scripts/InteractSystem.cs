@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class InteractSystem : MonoBehaviour
 {
     private Camera cam;
+    [Header("-----Externo-----")]
     [SerializeField] private AutomaticGun automaticGun;
     [SerializeField] private ManualGun manualGun;
     [SerializeField] private RocketLauncher rocket;
     [SerializeField] private FP player;
+
 
     [SerializeField] private float interactDistance;
     private Transform actualInteract;
@@ -39,18 +42,20 @@ public class InteractSystem : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     scritpAmmoBox.OpenBox();
-                    if (rocket.enabled)
+                    if (rocket.enabled && player.Points >= 3000)
                     {
-                        rocket.CurrentAmmo++;
+                        player.Points -= 3000;
+                        rocket.CurrentChamber++;
                     }
-                    else if (manualGun.enabled)
+                    else if (manualGun.enabled && player.Points >= 1500)
                     {
-                        Debug.Log("suma muni");
-                        manualGun.CurrentAmmo++;
+                        player.Points -= 1500;
+                        manualGun.CurrentChamber++;
                     }
-                    else if (automaticGun.enabled)
+                    else if (automaticGun.enabled && player.Points >= 2000)
                     {
-                        automaticGun.CurrentAmmo++;
+                        player.Points -= 2000;
+                        automaticGun.CurrentChamber++;
                     }
                 }
             }

@@ -26,7 +26,7 @@ public class RocketLauncher : MonoBehaviour
     [SerializeField] AudioManager audioManager;
     public AudioClip[] sonidos;
 
-    public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
+    public int CurrentChamber { get => currentChamber; set => currentChamber = value; }
 
     void Start()
     {

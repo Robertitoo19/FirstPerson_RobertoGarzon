@@ -122,9 +122,9 @@ public class Enemigo : MonoBehaviour
             anim.enabled = false;
             agent.enabled = false;
             player.GetComponent<FP>().ReceivePoints(enemyPoints);
+            FindObjectOfType<RoundsManager>().EnemyDefeated();
             Destroy(gameObject, 15);
             isDead = true;
-
         }
     }
 }

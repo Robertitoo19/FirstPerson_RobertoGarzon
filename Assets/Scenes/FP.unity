@@ -2207,7 +2207,7 @@ GameObject:
   - component: {fileID: 193882009}
   - component: {fileID: 193882012}
   m_Layer: 3
-  m_Name: FuturoTerreno
+  m_Name: Terreno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12459,7 +12459,7 @@ GameObject:
   - component: {fileID: 507300154}
   - component: {fileID: 507300153}
   m_Layer: 5
-  m_Name: ContadorRondas
+  m_Name: ContadorActualizacionRondas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19483,6 +19483,60 @@ Transform:
   - {fileID: 1037498287}
   m_Father: {fileID: 824909330}
   m_LocalEulerAnglesHint: {x: 22.637, y: 19.76, z: 17.136}
+--- !u!1 &967190595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967190597}
+  - component: {fileID: 967190596}
+  m_Layer: 0
+  m_Name: RoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &967190596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967190595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9e854b604fcd40ab0d99296d8ffe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRound: 1
+  enemiesPerRound: 3
+  enemyPrefab:
+  - {fileID: 2895427600817676676, guid: 3f0ad57a9d7cdef4abe37d1ccd087be5, type: 3}
+  - {fileID: 8302906050370888949, guid: 52105a57681352e49bbfecb669a7b681, type: 3}
+  spawnPoints:
+  - {fileID: 62824317}
+  - {fileID: 500656741}
+  spawnDelay: 1.5
+  txtRounds: {fileID: 507300153}
+--- !u!4 &967190597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967190595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.690563, y: 101.47748, z: 44.45002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &967433946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63071,12 +63125,11 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 336741403}
+  - {fileID: 471143928}
   - {fileID: 485187630}
   - {fileID: 193882011}
   - {fileID: 236159241}
   - {fileID: 1846830803}
-  - {fileID: 471143928}
-  - {fileID: 19626703}
   - {fileID: 987008296}
   - {fileID: 1562499874618129755}
   - {fileID: 772597834}
@@ -63084,3 +63137,5 @@ SceneRoots:
   - {fileID: 2101152867}
   - {fileID: 787391445}
   - {fileID: 1061825204}
+  - {fileID: 967190597}
+  - {fileID: 19626703}

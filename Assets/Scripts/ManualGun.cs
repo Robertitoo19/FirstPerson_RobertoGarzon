@@ -83,9 +83,8 @@ public class ManualGun : MonoBehaviour
     IEnumerator Reload()
     {
         int emptys = myData.MaxAmmo - currentAmmo;
-        currentChamber -= emptys;
 
-        if (currentChamber > 0) //Tengo muchas balas en chamber como para cubrir los huecos
+        if (currentChamber >= emptys) //Tengo muchas balas en chamber como para cubrir los huecos
         {
             isReloading = true;
 
@@ -96,13 +95,14 @@ public class ManualGun : MonoBehaviour
             yield return new WaitForSeconds(reloadTime);
 
             currentAmmo = myData.MaxAmmo;
+            currentChamber -= emptys;
 
             txtCurrentAmmo.text = ("" + currentAmmo);
             txtCurrentChamber.text = ("" + currentChamber);
 
             isReloading = false;
         }
-        else if (currentChamber == 0) //No tengo suficientes balas en chamber para cubrir todos los huecos
+        else
         {
             currentAmmo = currentAmmo + currentChamber;
             currentChamber = 0;

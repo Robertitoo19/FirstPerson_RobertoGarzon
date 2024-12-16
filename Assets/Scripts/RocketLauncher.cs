@@ -72,9 +72,8 @@ public class RocketLauncher : MonoBehaviour
     IEnumerator Reload()
     {
         int emptys = myData.MaxAmmo - currentAmmo;
-        currentChamber -= emptys;
 
-        if (currentChamber > 0)
+        if (currentChamber >= emptys)
         {
             isReloading = true;
 
@@ -85,13 +84,14 @@ public class RocketLauncher : MonoBehaviour
             yield return new WaitForSeconds(reloadTime);
 
             currentAmmo = myData.MaxAmmo;
+            currentChamber -= emptys;
 
             txtCurrentAmmo.text = ("" + currentAmmo);
             txtCurrentChamber.text = ("" + currentChamber);
 
             isReloading = false;
         }
-        else if (currentChamber == 0)
+        else
         {
             currentAmmo = currentAmmo + currentChamber;
             currentChamber = 0;

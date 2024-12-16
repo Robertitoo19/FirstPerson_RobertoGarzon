@@ -21,7 +21,7 @@ public class WeaponChanger : MonoBehaviour
 
     private void ChangeGunMouse()
     {
-        float scrollWhell = Input.GetAxis("Mouse ScrollWheel");
+        float scrollWhell = Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime;
 
         if (scrollWhell > 0)
         {

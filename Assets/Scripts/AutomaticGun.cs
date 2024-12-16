@@ -87,9 +87,9 @@ public class AutomaticGun : MonoBehaviour
     IEnumerator Reload()
     {
         int emptys = myData.MaxAmmo - currentAmmo;
-        currentChamber -= emptys;
 
-        if (currentChamber > 0)
+        //Si tengo en recámara igual o superior al nº de huecos...
+        if (currentChamber >= emptys)
         {
             isReloading = true;
 
@@ -100,13 +100,14 @@ public class AutomaticGun : MonoBehaviour
             yield return new WaitForSeconds(reloadTime);
 
             currentAmmo = myData.MaxAmmo;
+            currentChamber -= emptys;
 
             txtCurrentAmmo.text = ("" + currentAmmo);
             txtCurrentChamber.text = ("" + currentChamber);
 
             isReloading = false;
         }
-        else if (currentChamber == 0) 
+        else
         {
             currentAmmo = currentAmmo + currentChamber;
             currentChamber = 0;

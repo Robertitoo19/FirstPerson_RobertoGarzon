@@ -13,7 +13,12 @@ public class InteractSystem : MonoBehaviour
     [SerializeField] private ManualGun manualGun;
     [SerializeField] private RocketLauncher rocket;
     [SerializeField] private FP player;
-
+    [SerializeField] private GunSO myDataAR;
+    [SerializeField] private GunSO myDataRL;
+    [SerializeField] private GunSO myDataPistol;
+    [SerializeField] private TMP_Text txtCurrentChamberAR;
+    [SerializeField] private TMP_Text txtCurrentChamberRL;
+    [SerializeField] private TMP_Text txtCurrentChamberPistol;
 
     [SerializeField] private float interactDistance;
     private Transform actualInteract;
@@ -42,20 +47,23 @@ public class InteractSystem : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     scritpAmmoBox.OpenBox();
-                    if (rocket.enabled && player.Points >= 3000)
+                    if (rocket.enabled && player.Points >= 5000)
                     {
-                        player.Points -= 3000;
-                        rocket.CurrentChamber++;
+                        player.Points -= 5000;
+                        rocket.CurrentChamber += myDataRL.chamberBullets;
+                        txtCurrentChamberRL.text = ("" + rocket.CurrentChamber);
                     }
-                    else if (manualGun.enabled && player.Points >= 1500)
+                    else if (manualGun.enabled && player.Points >= 1800)
                     {
-                        player.Points -= 1500;
-                        manualGun.CurrentChamber++;
+                        player.Points -= 1800;
+                        manualGun.CurrentChamber += myDataPistol.chamberBullets;
+                        txtCurrentChamberPistol.text = ("" + manualGun.CurrentChamber);
                     }
                     else if (automaticGun.enabled && player.Points >= 2000)
                     {
                         player.Points -= 2000;
-                        automaticGun.CurrentChamber++;
+                        automaticGun.CurrentChamber += myDataAR.chamberBullets;
+                        txtCurrentChamberAR.text = ("" + automaticGun.CurrentChamber);
                     }
                 }
             }
@@ -73,9 +81,13 @@ public class InteractSystem : MonoBehaviour
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E) && player.Lives < 100) 
+                if (Input.GetKeyDown(KeyCode.E)&&player.Points >= 3000) 
                 {
                     player.Lives += 25;
+                    if(player.Lives > 100)
+                    {
+                        player.Lives = 100;
+                    }
                 }
             }
         }

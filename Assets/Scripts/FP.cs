@@ -5,13 +5,13 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FP : MonoBehaviour
 {
-    [SerializeField] private float lives;
     [SerializeField] private float pushForce;
 
-    [Header("-----Movimiento-----")]
+    [Header("-----Sistema Movimiento-----")]
     [SerializeField] private float speedMov;
     CharacterController controller;
     [SerializeField] private float gravityFactor;
@@ -24,7 +24,7 @@ public class FP : MonoBehaviour
     [SerializeField] private Transform feets;
     [SerializeField] private LayerMask whatIsGround;
 
-    [Header("-----Sprint-----")]
+    [Header("-----Sistema Sprint-----")]
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float sprintDuration;
     [SerializeField] private float sprintCooldown;
@@ -33,9 +33,25 @@ public class FP : MonoBehaviour
     private bool isSprinting = false;
     private bool canSprint = true;
 
-    [Header("-----Puntos-----")]
+    [SerializeField] private Slider sprintSlider;
+
+    [Header("-----Sistema Puntos-----")]
     [SerializeField] private float points;
     [SerializeField] private TMP_Text txtPoints;
+
+    [Header("-----Sistema Daño-----")]
+    [SerializeField] private float lives;
+    [SerializeField] private TMP_Text txtHealth;
+    [SerializeField] private Image damageOverlay;
+    //alpha maximo de la imagen.
+    [SerializeField] private float overlayMaxAlpha;
+    //velocidad transicion de la imagen.
+    [SerializeField] private float overlayFadeSpeed;
+    private Color overlayColor;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioManager audioManager;
+    public AudioClip[] sonidos;
 
     public float Lives { get => lives; set => lives = value; }
     public float Points { get => points; set => points = value; }
@@ -48,10 +64,24 @@ public class FP : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         txtPoints.text = ("" + points);
+
+        currentSprintTime = sprintDuration;
+
+        sprintSlider.maxValue = sprintDuration;
+        sprintSlider.value = sprintDuration;
+
+        //coger color de la imagen.
+        overlayColor = damageOverlay.color;
+        //empieza transparente
+        overlayColor.a = 0;
+        damageOverlay.color = overlayColor;
+        txtHealth.text = ("" + lives);
+
     }
     void Update()
     {
-        if (canSprint && Input.GetKeyDown(KeyCode.LeftShift))
+        // si se da al shift, puede sprintar y la barra tiene tiempo.
+        if (Input.GetKey(KeyCode.LeftShift) && canSprint && currentSprintTime > 0)
         {
             StartSprint();
         }
@@ -59,6 +89,8 @@ public class FP : MonoBehaviour
         {
             StopSprint();
         }
+        //actualizar slider segun cuanto tenga de sprint.
+        sprintSlider.value = currentSprintTime;
 
         MovYRotate();
         applyGravity();
@@ -68,6 +100,14 @@ public class FP : MonoBehaviour
             //resetear gravedad
             verticalMovement.y = 0;
             Jump();
+        }
+        //si no es transparente
+        if(overlayColor.a > 0)
+        {
+            //va desapareciendo segun el faseSpeed, sin salirse de los limites.
+            overlayColor.a -= Time.deltaTime * overlayFadeSpeed;
+            overlayColor.a = Mathf.Clamp(overlayColor.a, 0, overlayMaxAlpha);
+            damageOverlay.color = overlayColor;
         }
     }
     private void MovYRotate()
@@ -128,6 +168,12 @@ public class FP : MonoBehaviour
     public void ReceiveDamage(float enemyDamage)
     {
         lives -= enemyDamage;
+        //subir opacidad proporcional al daño, y no pasarse de los limites.
+        overlayColor.a = Mathf.Clamp(overlayColor.a + (enemyDamage / lives) * overlayMaxAlpha, 0, overlayMaxAlpha);
+        damageOverlay.color = overlayColor;
+        txtHealth.text = ("" + lives);
+
+        audioManager.ReproducirSFX(sonidos[0]);
 
         if (lives <= 0)
         {
@@ -151,25 +197,35 @@ public class FP : MonoBehaviour
     private void StartSprint()
     {
         isSprinting = true;
-        //transiciones suaves el clamp
-        currentSprintTime = Mathf.Clamp(currentSprintTime + Time.deltaTime, 0, sprintDuration);
+        //bajar tiempo sprint.
+        currentSprintTime -= Time.deltaTime;
+        //no pasar los limites del sprint.
+        currentSprintTime = Mathf.Clamp(currentSprintTime, 0, sprintDuration);
 
-        if (currentSprintTime >= sprintDuration)
+        //si se agota el sprint no puedes sprintar.
+        if (currentSprintTime <= 0)
         {
             canSprint = false;
-            StopSprint();
-            StartCoroutine(ResetSprint());
+            isSprinting = false;
         }
     }
 
     private void StopSprint()
     {
         isSprinting = false;
-        currentSprintTime = math.clamp(currentSprintTime - Time.deltaTime, 0, sprintDuration);
-    }
-    private IEnumerator ResetSprint()
-    {
-        yield return new WaitForSeconds(sprintCooldown);
-        canSprint = true;
+
+        //si no estas sprintando recargar sprint.
+        if(!isSprinting)
+        {
+            //incrementar suave.
+            currentSprintTime += Time.deltaTime / sprintCooldown;
+            //asegurar q no pasa el limite.
+            currentSprintTime = Mathf.Clamp(currentSprintTime, 0, sprintDuration);
+
+            if(currentSprintTime >= sprintDuration)
+            {
+                canSprint = true;
+            }
+        }
     }
 }

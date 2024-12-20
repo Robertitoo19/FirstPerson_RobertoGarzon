@@ -20,6 +20,7 @@ public class InteractSystem : MonoBehaviour
     [SerializeField] private TMP_Text txtCurrentChamberRL;
     [SerializeField] private TMP_Text txtCurrentChamberPistol;
     [SerializeField] private TMP_Text txtPoints;
+    [SerializeField] private TMP_Text txtLives;
 
     [SerializeField] private float interactDistance;
     private Transform actualInteract;
@@ -91,6 +92,7 @@ public class InteractSystem : MonoBehaviour
                     player.Lives += 25;
                     player.Points -= 3000;
                     txtPoints.text = ("" + player.Points);
+                    txtLives.text = ("" + player.Lives);
 
                     if (player.Lives > 100)
                     {

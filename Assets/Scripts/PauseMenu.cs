@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] Canvas pauseMenu;
+    [SerializeField] private Canvas pauseMenu;
     bool pause;
     void Start()
     {
@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(pause);
         Cursor.lockState = CursorLockMode.None;
 
-        if (pause == true)
+        if (pause)
         {
             Time.timeScale = 0;
         }

@@ -3868,6 +3868,9 @@ MonoBehaviour:
   enemyDamage: 30
   enemyPoints: 200
   livesEnemy: 150
+  audioManager: {fileID: 0}
+  sonidos:
+  - {fileID: 8300000, guid: b7cf8e7fb8a13844483267dcbcd24860, type: 3}
 --- !u!95 &6993296499582616175
 Animator:
   serializedVersion: 5
@@ -3900,18 +3903,18 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3914964743010179241, guid: 32ad1e5e6dbf08d428ec9a1882b221e1,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6e258b4265dbcce44999b6eeb6ccfcc5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 3
-  MaxDistance: 100
+  MaxDistance: 7
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

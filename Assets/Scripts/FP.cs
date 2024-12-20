@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class FP : MonoBehaviour
 {
     [SerializeField] private float lives;
+    [SerializeField] private float pushForce;
 
     [Header("-----Movimiento-----")]
     [SerializeField] private float speedMov;
@@ -22,7 +24,14 @@ public class FP : MonoBehaviour
     [SerializeField] private Transform feets;
     [SerializeField] private LayerMask whatIsGround;
 
-    [SerializeField] private float pushForce;
+    [Header("-----Sprint-----")]
+    [SerializeField] private float sprintSpeed;
+    [SerializeField] private float sprintDuration;
+    [SerializeField] private float sprintCooldown;
+
+    private float currentSprintTime = 0f;
+    private bool isSprinting = false;
+    private bool canSprint = true;
 
     [Header("-----Puntos-----")]
     [SerializeField] private float points;
@@ -42,6 +51,15 @@ public class FP : MonoBehaviour
     }
     void Update()
     {
+        if (canSprint && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartSprint();
+        }
+        else
+        {
+            StopSprint();
+        }
+
         MovYRotate();
         applyGravity();
 
@@ -65,15 +83,17 @@ public class FP : MonoBehaviour
         float rotateAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
 
         //cuerpo gire con la camara
-        transform.rotation = quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
         if (input.magnitude > 0)
         {
             //movimiento queda rotado con el angulo de rotacion de la camara (tu frontal es donde apunta la camara).
             Vector3 movement = Quaternion.Euler(0, rotateAngle, 0) * Vector3.forward;
+            //si esta esprintando, el current speed es sprint speed y si no es el speedmove.
+            float currentSpeed = isSprinting ? sprintSpeed : speedMov;
 
             //movimiento controller
-            controller.Move(movement * speedMov * Time.deltaTime);
+            controller.Move(movement * currentSpeed * Time.deltaTime);
         }
     }
     private void applyGravity()
@@ -127,5 +147,29 @@ public class FP : MonoBehaviour
             Vector3 Push = hit.gameObject.transform.position - transform.position;
             hit.gameObject.GetComponent<Rigidbody>().AddForce(Push.normalized * pushForce, ForceMode.Impulse);
         }
+    }
+    private void StartSprint()
+    {
+        isSprinting = true;
+        //transiciones suaves el clamp
+        currentSprintTime = Mathf.Clamp(currentSprintTime + Time.deltaTime, 0, sprintDuration);
+
+        if (currentSprintTime >= sprintDuration)
+        {
+            canSprint = false;
+            StopSprint();
+            StartCoroutine(ResetSprint());
+        }
+    }
+
+    private void StopSprint()
+    {
+        isSprinting = false;
+        currentSprintTime = math.clamp(currentSprintTime - Time.deltaTime, 0, sprintDuration);
+    }
+    private IEnumerator ResetSprint()
+    {
+        yield return new WaitForSeconds(sprintCooldown);
+        canSprint = true;
     }
 }

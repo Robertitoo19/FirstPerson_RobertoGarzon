@@ -10,6 +10,7 @@ public class Enemigo : MonoBehaviour
     private NavMeshAgent agent;
     private FP player;
     private Animator anim;
+    private AudioSource source;
 
     private bool OpenWindow;
     [Header("-----SistemaCombate-----")]
@@ -25,6 +26,10 @@ public class Enemigo : MonoBehaviour
     private bool isDead = false;
 
     [SerializeField] private float livesEnemy;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioManager audioManager;
+    public AudioClip[] sonidos;
     public float LivesEnemy { get => livesEnemy; set => livesEnemy = value; }
 
     void Start()
@@ -32,6 +37,7 @@ public class Enemigo : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindObjectOfType<FP>();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
 
         joints = GetComponentsInChildren<Rigidbody>();
 
@@ -121,6 +127,7 @@ public class Enemigo : MonoBehaviour
             ChangeJointsState(false);
             anim.enabled = false;
             agent.enabled = false;
+            source.enabled = false;
             player.GetComponent<FP>().ReceivePoints(enemyPoints);
             FindObjectOfType<RoundsManager>().EnemyDefeated();
             Destroy(gameObject, 15);

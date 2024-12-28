@@ -57,16 +57,16 @@ public class InteractSystem : MonoBehaviour
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberRL.text = ("" + rocket.CurrentChamber);
                     }
-                    if (automaticGun.enabled && player.Points >= 2000)
+                    if (automaticGun.enabled && player.Points >= 2500)
                     {
-                        player.Points -= 2000;
+                        player.Points -= 2500;
                         automaticGun.CurrentChamber += myDataAR.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberAR.text = ("" + automaticGun.CurrentChamber);
                     }
-                    if (manualGun.enabled && player.Points >= 1800)
+                    if (manualGun.enabled && player.Points >= 1200)
                     {
-                        player.Points -= 1800;
+                        player.Points -= 1200;
                         manualGun.CurrentChamber += myDataPistol.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberPistol.text = ("" + manualGun.CurrentChamber);
@@ -87,10 +87,10 @@ public class InteractSystem : MonoBehaviour
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
 
-                if (Input.GetKeyDown(KeyCode.E) && player.Points >= 3000 && player.Lives < 100) 
+                if (Input.GetKeyDown(KeyCode.E) && player.Points >= 2500 && player.Lives < 100) 
                 {
-                    player.Lives += 25;
-                    player.Points -= 3000;
+                    player.Lives += 33;
+                    player.Points -= 2500;
                     txtPoints.text = ("" + player.Points);
                     txtLives.text = ("" + player.Lives);
 

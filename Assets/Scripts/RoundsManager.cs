@@ -15,6 +15,10 @@ public class RoundsManager : MonoBehaviour
     private int enemiesRemaining;
 
     [SerializeField] private TMP_Text txtRounds;
+
+    [Header("-----Player-----")]
+    [SerializeField] private FP player;
+    [SerializeField] private TMP_Text txtPoints;
     void Start()
     {
         StartCoroutine(ShowRound());
@@ -48,6 +52,8 @@ public class RoundsManager : MonoBehaviour
                 yield return null;
             }
             currentRound++;
+            player.Points += 1000;
+            txtPoints.text = ("" + player.Points);
             StartCoroutine(ShowRound());
         }
     }

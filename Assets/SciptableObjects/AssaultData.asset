@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82748c49a26bbdd4387823fa85bf0220, type: 3}
   m_Name: AssaultData
   m_EditorClassIdentifier: 
-  MaxAmmo: 31
+  MaxAmmo: 40
   chamberBullets: 120
   cadence: 0.07
   attackDistance: 300

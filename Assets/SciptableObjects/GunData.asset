@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunData
   m_EditorClassIdentifier: 
   MaxAmmo: 7
-  chamberBullets: 56
+  chamberBullets: 63
   cadence: 1.25
   attackDistance: 300
   attackDamage: 25

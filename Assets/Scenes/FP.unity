@@ -19951,6 +19951,8 @@ MonoBehaviour:
   - {fileID: 500656741}
   spawnDelay: 1.5
   txtRounds: {fileID: 507300153}
+  player: {fileID: 1702622768}
+  txtPoints: {fileID: 1165860752}
 --- !u!4 &967190597
 Transform:
   m_ObjectHideFlags: 0

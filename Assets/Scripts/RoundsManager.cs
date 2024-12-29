@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoundsManager : MonoBehaviour
 {
@@ -19,15 +20,24 @@ public class RoundsManager : MonoBehaviour
     [Header("-----Player-----")]
     [SerializeField] private FP player;
     [SerializeField] private TMP_Text txtPoints;
+
+    [Header("-----GameOver-----")]
+    [SerializeField] private GameObject gameOver; 
+    [SerializeField] private TMP_Text txtGameOverRounds;
     void Start()
     {
+        gameOver.SetActive(false);
         StartCoroutine(ShowRound());
         StartCoroutine(RoundLoop());
     }
     void Update()
     {
-        
+        if (player.Lives <= 0)
+        {
+            GameOver();
+        }
     }
+
     private IEnumerator StartNewRound()
     {
         int totalEnemies = enemiesPerRound * currentRound;
@@ -73,5 +83,23 @@ public class RoundsManager : MonoBehaviour
             txtRounds.alpha -= Time.deltaTime; //Desaparecer gradualmente
             yield return null;
         }
+    }
+    private void GameOver()
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        gameOver.SetActive(true);
+        txtGameOverRounds.text = ("Sobreviviste " + currentRound + " rondas");
+    }
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        //volver a tirar la escena actual.
+        SceneManager.LoadScene(1);
+    }
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

@@ -174,11 +174,6 @@ public class FP : MonoBehaviour
         txtHealth.text = ("" + lives);
 
         audioManager.ReproducirSFX(sonidos[0]);
-
-        if (lives <= 0)
-        {
-            SceneManager.LoadScene(2);
-        }
     }
     public void ReceivePoints(float enemyPoints)
     {

@@ -122,6 +122,151 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6273751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6273752}
+  - component: {fileID: 6273754}
+  - component: {fileID: 6273753}
+  m_Layer: 5
+  m_Name: TextoLore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6273752
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350761793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -30, y: -30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6273753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "En lo profundo de un valle olvidado, se encuentra un pueblo envuelto en
+    misterio y sombras. Nadie recuerda c\xF3mo comenz\xF3, pero un d\xEDa, el bosque
+    que rodea el lugar se cerr\xF3 como un muro impenetrable. Las ra\xEDces se retorcieron
+    en suelos firmes y las copas de los \xE1rboles oscurecieron el cielo, bloqueando
+    cualquier escape.\n\nEl pueblo se convirti\xF3 en un campo de supervivencia.
+    Desde las sombras del bosque, los muertos comenzaron a alzarse, impulsados por
+    un hambre insaciable y una furia inexplicable.\n\nEres el \xFAnico superviviente,
+    armado con ingenio y unas pocas armas. Cada noche trae hordas m\xE1s feroces,
+    y cada victoria te acerca m\xE1s a conseguir extinguir la plaga.\n\n\xBFPodr\xE1s
+    sobrevivir a las oleadas de zombies y encontrar una manera de escapar? O peor
+    a\xFAn, \xBFdescubrir\xE1s que tal vez nunca hubo escapatoria?"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &6273754
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273751}
+  m_CullTransparentMesh: 1
 --- !u!1 &13052884
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +753,7 @@ GameObject:
   - component: {fileID: 203459756}
   - component: {fileID: 203459755}
   m_Layer: 5
-  m_Name: BotonAudio
+  m_Name: BotonLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,7 +825,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1779093906}
         m_TargetAssemblyTypeName: SceneManage, Assembly-CSharp
-        m_MethodName: Audio
+        m_MethodName: Lore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1026,7 +1171,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6273752}
   m_Father: {fileID: 156283545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2113,8 +2259,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2145,7 +2291,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2248,8 +2394,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2280,7 +2426,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2815,7 +2961,7 @@ GameObject:
   - component: {fileID: 1187964098}
   - component: {fileID: 1187964097}
   m_Layer: 5
-  m_Name: TextoAudio
+  m_Name: TextoLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2860,10 +3006,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Audio
+  m_text: Lore
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2894,7 +3040,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3524,7 +3670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1400983654}
   m_Layer: 5
-  m_Name: MenuAudio
+  m_Name: MenuLore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3660,8 +3806,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3692,7 +3838,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3930,8 +4076,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Controls
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3962,7 +4108,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5068,7 +5214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 580, y: -210}
+  m_AnchoredPosition: {x: 470, y: -210}
   m_SizeDelta: {x: 800, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751543714
@@ -5200,7 +5346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1366440631}
   optionsMenu: {fileID: 786749460}
-  audioMenu: {fileID: 1400983653}
+  loreMenu: {fileID: 1400983653}
   controlsMenu: {fileID: 1155477524}
 --- !u!4 &1779093907
 Transform:
@@ -5413,8 +5559,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc28bb72c62072d4c969830010dd9064, type: 2}
-  m_sharedMaterial: {fileID: 9001916423450723424, guid: cc28bb72c62072d4c969830010dd9064,
+  m_fontAsset: {fileID: 11400000, guid: 1144bdfd4cb4a094ba2622dadd605aa4, type: 2}
+  m_sharedMaterial: {fileID: -8670421146440488068, guid: 1144bdfd4cb4a094ba2622dadd605aa4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5445,7 +5591,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

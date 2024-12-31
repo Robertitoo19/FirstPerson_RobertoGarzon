@@ -89,17 +89,19 @@ public class RoundsManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         gameOver.SetActive(true);
-        txtGameOverRounds.text = ("Sobreviviste " + currentRound + " rondas");
+        txtGameOverRounds.text = ("You Survive " + currentRound + " Rounds");
     }
     public void Retry()
     {
         Time.timeScale = 1f;
+
+        //coger que la escena actual es la del juego.
         //volver a tirar la escena actual.
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void MainMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 }

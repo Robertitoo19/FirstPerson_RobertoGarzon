@@ -8,10 +8,9 @@ public class RoundsManager : MonoBehaviour
 {
     [Header("-----Round System-----")]
     [SerializeField] private int currentRound; 
-    [SerializeField] private int enemiesPerRound; 
+    //[SerializeField] private int enemiesPerRound; 
     [SerializeField] private GameObject[] enemyPrefab; 
     [SerializeField] private Transform[] spawnPoints; 
-    [SerializeField] private float spawnDelay; 
 
     private int enemiesRemaining;
 
@@ -37,11 +36,28 @@ public class RoundsManager : MonoBehaviour
             GameOver();
         }
     }
-
+    private int CalculateEnemies(int round)
+    {
+        //enemigos que empiezan en la ronda 1.
+        float baseEnemies = 10;
+        //como crece la aparicion de zombies.
+        float enemiesGrowth = 1.15f;
+        //MATHF.POW ---> eleva un numero (baseEnemies) a una potencia (dentro de Pow) se usa round - 1 para crecer exponencialmente
+        //CeilToInt ---> redondea el resultado al numero mas cercano hacia arriba
+        return Mathf.CeilToInt(baseEnemies * Mathf.Pow(enemiesGrowth, round - 1));
+    }
+    private float CalculateSpawnDelay(int round)
+    {
+        //tiempo para que se hagan todos los spawns
+        float baseTime = 20f;
+        int enemies = CalculateEnemies(round);
+        return baseTime / enemies;
+    }
     private IEnumerator StartNewRound()
     {
-        int totalEnemies = enemiesPerRound * currentRound;
+        int totalEnemies = CalculateEnemies(currentRound);
         enemiesRemaining = totalEnemies;
+        float spawnDelay = CalculateSpawnDelay(currentRound);
 
         for (int i = 0; i < totalEnemies; i++)
         {

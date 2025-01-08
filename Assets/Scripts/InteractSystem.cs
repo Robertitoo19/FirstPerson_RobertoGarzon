@@ -50,21 +50,21 @@ public class InteractSystem : MonoBehaviour
                 {
                     scritpAmmoBox.OpenBox();
 
-                    if (rocket.enabled && player.Points >= 5000)
+                    if (rocket.gameObject.activeSelf && player.Points >= 5000)
                     {
                         player.Points -= 5000;
                         rocket.CurrentChamber += myDataRL.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberRL.text = ("" + rocket.CurrentChamber);
                     }
-                    if (automaticGun.enabled && player.Points >= 2500)
+                    else if (automaticGun.gameObject.activeSelf && player.Points >= 2500)
                     {
                         player.Points -= 2500;
                         automaticGun.CurrentChamber += myDataAR.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberAR.text = ("" + automaticGun.CurrentChamber);
                     }
-                    if (manualGun.enabled && player.Points >= 1200)
+                    else if (manualGun.gameObject.activeSelf && player.Points >= 1200)
                     {
                         player.Points -= 1200;
                         manualGun.CurrentChamber += myDataPistol.chamberBullets;

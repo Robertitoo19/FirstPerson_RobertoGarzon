@@ -93,9 +93,9 @@ public class FP : MonoBehaviour
         sprintSlider.value = currentSprintTime;
 
         MovYRotate();
-        applyGravity();
+        ApplyGravity();
 
-        if (isGrounded())
+        if (IsGrounded())
         {
             //resetear gravedad
             verticalMovement.y = 0;
@@ -136,7 +136,7 @@ public class FP : MonoBehaviour
             controller.Move(movement * currentSpeed * Time.deltaTime);
         }
     }
-    private void applyGravity()
+    private void ApplyGravity()
     {
         //mi velocidad vertical crece en Y a cierta velocidad x segundo.
         verticalMovement.y += gravityFactor * Time.deltaTime;
@@ -144,7 +144,7 @@ public class FP : MonoBehaviour
         controller.Move(verticalMovement * Time.deltaTime);
         //(se acumula la gravedad y baja raro)
     }
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         //hacer esfera de detencion en los pies para saber si estoy suelo.
         //detectar posicion de los pies con transform.
@@ -168,6 +168,10 @@ public class FP : MonoBehaviour
     public void ReceiveDamage(float enemyDamage)
     {
         lives -= enemyDamage;
+        if(lives < 0)
+        {
+            lives = 0;
+        }
         //subir opacidad proporcional al daño, y no pasarse de los limites.
         overlayColor.a = Mathf.Clamp(overlayColor.a + (enemyDamage / lives) * overlayMaxAlpha, 0, overlayMaxAlpha);
         damageOverlay.color = overlayColor;

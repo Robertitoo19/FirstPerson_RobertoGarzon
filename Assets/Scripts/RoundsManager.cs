@@ -23,15 +23,15 @@ public class RoundsManager : MonoBehaviour
     [Header("-----GameOver-----")]
     [SerializeField] private GameObject gameOver; 
     [SerializeField] private TMP_Text txtGameOverRounds;
+    private bool isGameover = false;
     void Start()
     {
         gameOver.SetActive(false);
-        StartCoroutine(ShowRound());
-        StartCoroutine(RoundLoop());
+        StartNewGame();
     }
     void Update()
     {
-        if (player.Lives <= 0)
+        if (!isGameover && player.Lives <= 0)
         {
             GameOver();
         }
@@ -83,6 +83,13 @@ public class RoundsManager : MonoBehaviour
             StartCoroutine(ShowRound());
         }
     }
+    private void StartNewGame()
+    {
+        StopAllCoroutines();
+        currentRound = 1;
+        StartCoroutine(ShowRound());
+        StartCoroutine(RoundLoop());
+    }
     public void EnemyDefeated()
     {
         enemiesRemaining--;
@@ -92,16 +99,17 @@ public class RoundsManager : MonoBehaviour
         txtRounds.alpha = 1; //El texto es visible
         txtRounds.text = ("Round " + currentRound);
 
-        yield return new WaitForSeconds(2f); //Mostrar el texto por 2 segundos
+        yield return new WaitForSecondsRealtime(2f); //Mostrar el texto por 2 segundos en tiempo real
 
         while (txtRounds.alpha > 0)
         {
-            txtRounds.alpha -= Time.deltaTime; //Desaparecer gradualmente
+            txtRounds.alpha -= Time.unscaledDeltaTime; //Desaparecer gradualmente
             yield return null;
         }
     }
     private void GameOver()
     {
+        isGameover = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         gameOver.SetActive(true);
@@ -109,7 +117,9 @@ public class RoundsManager : MonoBehaviour
     }
     public void Retry()
     {
+        StartNewGame();
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
 
         //coger que la escena actual es la del juego.
         //volver a tirar la escena actual.

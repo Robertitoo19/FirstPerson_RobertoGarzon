@@ -9,6 +9,7 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject loreMenu;
     [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject ObjetiveMenu;
     public void Play()
     {
         SceneManager.LoadScene(1);
@@ -20,6 +21,7 @@ public class SceneManage : MonoBehaviour
         optionsMenu.SetActive(true);
         loreMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        ObjetiveMenu.SetActive(false);
     }
     public void Menu()
     {
@@ -27,6 +29,7 @@ public class SceneManage : MonoBehaviour
         optionsMenu.SetActive(false);
         loreMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        ObjetiveMenu.SetActive(false);
     }
     public void Lore()
     {
@@ -34,6 +37,7 @@ public class SceneManage : MonoBehaviour
         optionsMenu.SetActive(true);
         loreMenu.SetActive(true);
         controlsMenu.SetActive(false);
+        ObjetiveMenu.SetActive(false);
     }
     public void Controls()
     {
@@ -41,5 +45,14 @@ public class SceneManage : MonoBehaviour
         optionsMenu.SetActive(true);
         loreMenu.SetActive(false);
         controlsMenu.SetActive(true);
+        ObjetiveMenu.SetActive(false);
+    }
+    public void Objetive()
+    {
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+        loreMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        ObjetiveMenu.SetActive(true);
     }
 }

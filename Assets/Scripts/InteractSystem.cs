@@ -22,6 +22,8 @@ public class InteractSystem : MonoBehaviour
     [SerializeField] private TMP_Text txtPoints;
     [SerializeField] private TMP_Text txtLives;
     [SerializeField] private TMP_Text txtWeaponPrice;
+    [SerializeField] private TMP_Text txtAmmoPrice;
+    [SerializeField] private TMP_Text txtAidPrice;
 
 
     [SerializeField] private float interactDistance;
@@ -50,6 +52,8 @@ public class InteractSystem : MonoBehaviour
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
 
+                txtAmmoPrice.text = ("Pistol: 1200 points Assault Rifle: 2500 points Bazooka: 5000 points");
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     scritpAmmoBox.OpenBox();
@@ -60,6 +64,7 @@ public class InteractSystem : MonoBehaviour
                         rocket.CurrentChamber += myDataRL.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberRL.text = ("" + rocket.CurrentChamber);
+                        txtAmmoPrice.text = ("");
                     }
                     else if (automaticGun.gameObject.activeSelf && player.Points >= 2500)
                     {
@@ -67,6 +72,7 @@ public class InteractSystem : MonoBehaviour
                         automaticGun.CurrentChamber += myDataAR.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberAR.text = ("" + automaticGun.CurrentChamber);
+                        txtAmmoPrice.text = ("");
                     }
                     else if (manualGun.gameObject.activeSelf && player.Points >= 1200)
                     {
@@ -74,6 +80,7 @@ public class InteractSystem : MonoBehaviour
                         manualGun.CurrentChamber += myDataPistol.chamberBullets;
                         txtPoints.text = ("" + player.Points);
                         txtCurrentChamberPistol.text = ("" + manualGun.CurrentChamber);
+                        txtAmmoPrice.text = ("");
                     }
                 }
             }
@@ -84,7 +91,7 @@ public class InteractSystem : MonoBehaviour
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
                 //mostrar el precio del arma
-                txtWeaponPrice.text = ("Purchase " + scriptShop.WeaponPrice1 + " Points");
+                txtWeaponPrice.text = ("Purchase: " + scriptShop.WeaponPrice1 + " Points");
 
                 if (Input.GetKeyDown(KeyCode.E) && player.Points >= scriptShop.WeaponPrice1)
                 {
@@ -101,6 +108,8 @@ public class InteractSystem : MonoBehaviour
                 actualInteract = scriptAid.transform;
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
+
+                txtAidPrice.text = "Health: 2500 points";
 
                 if (Input.GetKeyDown(KeyCode.E) && player.Points >= 2500 && player.Lives < 100) 
                 {
@@ -124,6 +133,8 @@ public class InteractSystem : MonoBehaviour
             //ya no ves interactuable
             actualInteract = null;
             txtWeaponPrice.text = "";
+            txtAmmoPrice.text = ("");
+            txtAidPrice.text = "";
         }
     }
 }

@@ -21,9 +21,13 @@ public class InteractSystem : MonoBehaviour
     [SerializeField] private TMP_Text txtCurrentChamberPistol;
     [SerializeField] private TMP_Text txtPoints;
     [SerializeField] private TMP_Text txtLives;
+    [SerializeField] private TMP_Text txtWeaponPrice;
+
 
     [SerializeField] private float interactDistance;
     private Transform actualInteract;
+
+
     void Start()
     {
         cam = Camera.main;
@@ -73,12 +77,23 @@ public class InteractSystem : MonoBehaviour
                     }
                 }
             }
-            if (hit.transform.TryGetComponent(out M4 scriptM4Wall))
+            if (hit.transform.TryGetComponent(out WeaponShop scriptShop))
             {
                 //si lo lleva es un interactuable  
-                actualInteract = scriptM4Wall.transform;
+                actualInteract = scriptShop.transform;
                 //activar outline
                 actualInteract.GetComponent<Outline>().enabled = true;
+                //mostrar el precio del arma
+                txtWeaponPrice.text = ("Purchase " + scriptShop.WeaponPrice1 + " Points");
+
+                if (Input.GetKeyDown(KeyCode.E) && player.Points >= scriptShop.WeaponPrice1)
+                {
+                    player.Points -= scriptShop.WeaponPrice1;
+                    txtPoints.text = ("" + player.Points);
+                    scriptShop.UnlockWeapon();
+                    //si compras se limpia el texto
+                    txtWeaponPrice.text = ("");
+                }
             }
             if (hit.transform.TryGetComponent(out FirstAid scriptAid))
             {
@@ -108,6 +123,7 @@ public class InteractSystem : MonoBehaviour
             actualInteract.GetComponent<Outline>().enabled = false;
             //ya no ves interactuable
             actualInteract = null;
+            txtWeaponPrice.text = "";
         }
     }
 }

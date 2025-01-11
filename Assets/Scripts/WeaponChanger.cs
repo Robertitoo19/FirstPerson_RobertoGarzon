@@ -8,9 +8,14 @@ public class WeaponChanger : MonoBehaviour
     [SerializeField] private GameObject[] guns;
     //recoge indice arma actual.
     private int actualGun;
+    //Saber si el arma esta o no desbloqueada
+    private bool[] unlockedGuns;
     void Start()
     {
-        
+        //el mismo tamaño que el array de cuantas armas hay
+        unlockedGuns = new bool[guns.Length];
+        //el primer arma esta desbloqueada ya 
+        unlockedGuns[0] = true;
     }
     void Update()
     {
@@ -55,23 +60,34 @@ public class WeaponChanger : MonoBehaviour
 
     private void ChangeWeapon(int newGun)
     {
-        //desactivar arma actual.
-        guns[actualGun].SetActive(false);
-        
-        //si el indice es negativo.
         if (newGun < 0)
         {
-            //indice es el ultimo de la lista
             newGun = guns.Length - 1;
         }
-        else if(newGun > guns.Length)
+        else if (newGun >= guns.Length)
         {
             newGun = 0;
         }
+        //si esta desbloqueada, se activa
+        if (unlockedGuns[newGun])
+        {
+            guns[actualGun].SetActive(false);
+            guns[newGun].SetActive(true);
+            actualGun = newGun;
+        }
+        else
+        {
+            Debug.Log("Esta arma no está desbloqueada.");
+        }
+    }
 
-        //activar nueva arma.
-        guns[newGun].SetActive(true);
-
-        actualGun = newGun;
+    public void UnlockWeapon(int weaponIndex)
+    {
+        if (weaponIndex >= 0 && weaponIndex < guns.Length)
+        {
+            //desbloquear arma
+            unlockedGuns[weaponIndex] = true;
+            Debug.Log("Arma desbloqueada" + guns[weaponIndex].name);
+        }
     }
 }
